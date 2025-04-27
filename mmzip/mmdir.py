@@ -50,7 +50,7 @@ class MMDir:
     def have_info(self) -> bool:
         return self.info_file_path.exists()
     
-    def _get_entry_set_path_list(self) -> list:
+    def get_entry_set_path_list(self) -> list:
         entry_set_list = []
         for file in self.info_dir_path.glob(mm_const.FILE_PATH_GLOB_FORMAT_ENTRY_SET):
             entry_set_list.append(file)
@@ -60,7 +60,7 @@ class MMDir:
 
     def get_entry_set_list(self):
         entry_set_list = []
-        for file in self._get_entry_set_path_list():
+        for file in self.get_entry_set_path_list():
             data = file.read_text()
             entry_set_list.append(json.loads(data))
         return entry_set_list
