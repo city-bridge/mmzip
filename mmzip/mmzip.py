@@ -49,6 +49,13 @@ class MMZip:
 
         return entry_set_list[entry_set_num]
 
+    def get_data_files(self) -> list:
+        data_files = []
+        for file in self.zip_obj.filelist:
+            if file.filename.startswith(mm_const.DIR_PATH_DATA):
+                data_files.append(file)
+        return data_files
+
     def extract(self, entry_set_num: int, extract_to: str) -> None:
         logger.info("Extracting entry set %d to %s", entry_set_num, extract_to)
         entry_set = self.get_entry_set(entry_set_num)
