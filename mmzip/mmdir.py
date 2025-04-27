@@ -74,6 +74,15 @@ class MMDir:
 
         return entry_set_list[entry_set_num]
 
+    def get_data_files(self) -> list:
+        data_files = []
+        for file in self.data_dir_path.iterdir():
+            data_files.append({
+                "path": file,
+                "entry_name": mm_const.DIR_PATH_DATA + file.name,
+            })
+        return data_files
+
     def extract(self, entry_set_num: int, extract_to: str) -> None:
         logger.info("Extracting entry set %d to %s", entry_set_num, extract_to)
         entry_set = self.get_entry_set(entry_set_num)
